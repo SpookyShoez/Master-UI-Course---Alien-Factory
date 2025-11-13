@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class CharacterManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class CharacterManager : MonoBehaviour
     public Sprite[] characterSprites;
     public GameObject characterOptionsPrefab;
     public Transform charactersContainer;
+    public Color[] colors;
 
     private void Start() {   
         foreach (Transform child in charactersContainer)
@@ -16,11 +18,14 @@ public class CharacterManager : MonoBehaviour
             Destroy(child.gameObject);
         }
         SetupCharacters();
+        CharacterClicked(0);
+        ChangeColor(0);
     }
 
     public void CharacterClicked(int id)
     {
         previewImage.sprite = characterSprites[id];
+        previewImage.SetNativeSize();
     }
 
     void SetupCharacters()
@@ -31,6 +36,11 @@ public class CharacterManager : MonoBehaviour
             CharacterOption characterOption = go.GetComponent<CharacterOption>();
             characterOption.Initialize(this, i);
         }
+    }
+
+    public void ChangeColor(int option)
+    {
+        previewImage.color = colors[option];
     }
 }
 
