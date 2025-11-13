@@ -19,7 +19,8 @@ public class CharacterManager : MonoBehaviour
         }
         SetupCharacters();
         CharacterClicked(0);
-        ChangeColor(0);
+       // ChangeColor(0);
+       ChangeColor(colors[0]);
     }
 
     public void CharacterClicked(int id)
@@ -41,6 +42,11 @@ public class CharacterManager : MonoBehaviour
     public void ChangeColor(int option)
     {
         previewImage.color = colors[option];
+    }
+
+    public void ChangeColor(Color color)
+    {
+        previewImage.color = color;
     }
 }
 
